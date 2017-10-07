@@ -65,11 +65,11 @@ express()
     },
     {$set: {estado: req.body.estado}},
     {upsert: true},
-    function(err, newBook){
+    function(err, sensor){
       if(err){
         res.send('err has ocurred');
       }else{
-        res.json(newBook);
+        res.json(sensor);
       }
     })
   })
@@ -77,11 +77,11 @@ express()
 .delete('/sensor/:nome', function(req, res){
   Todo.findOneAndRemove(
     {nome: req.params.nome},
-    function(err, book){
+    function(err, sensor){
       if(err){
         res.send('err has ocurred');
       } else{
-        res.send(book);
+        res.send(sensor);
       }
     })
   })
