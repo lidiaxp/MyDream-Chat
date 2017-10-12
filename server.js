@@ -30,6 +30,10 @@ express()
   .use(bodyParser.json()) // support json encoded bodies
   .use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
 
+  .get('/', function(req, res){
+	res.send('ola');
+   })
+
   .get('/sensor', function (req, res) {
     // http://mongoosejs.com/docs/api.html#query_Query-find
     res.setHeader("Access-Control-allow-Origin", "*");
