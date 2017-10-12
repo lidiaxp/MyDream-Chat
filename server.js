@@ -32,12 +32,18 @@ express()
 
   .get('/sensor', function (req, res) {
     // http://mongoosejs.com/docs/api.html#query_Query-find
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
     Todo.find( function ( err, todos ){
       res.json(200, todos);
     });
   })
 
   .post('/sensor', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
     var todo = new Todo( req.body );
     todo.id = todo._id;
     // http://mongoosejs.com/docs/api.html#model_Model-save
@@ -47,6 +53,9 @@ express()
   })
 
   .get('/sensor/:nome', function(req, res){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
     Todo.findOne({
       nome: req.params.nome
     })
@@ -60,6 +69,9 @@ express()
   })
 
   .put('/sensor/:nome', function(req, res){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
     Todo.findOneAndUpdate({
       nome: req.params.nome
     },
@@ -75,6 +87,9 @@ express()
   })
 
 .delete('/sensor/:nome', function(req, res){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
   Todo.findOneAndRemove(
     {nome: req.params.nome},
     function(err, sensor){
