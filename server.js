@@ -72,7 +72,7 @@ express()
   })
 
   .put('/sensor/:nome', function(req, res){
-    res.setHeader("Access-Control-allow-Origin", "*");
+    res.setHeader("Access-Control-allow-Origin", "http://mydreamphi.000webhostapp.com");
     res.setHeader("Access-Control-allow-Methods", "GET, POST, PUT, DELETE");
     res.setHeader("Access-Control-allow-Headers", "Content-type");
     res.setHeader("Access-Control-allow-Credentials", true);
