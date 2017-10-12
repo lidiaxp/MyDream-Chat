@@ -30,9 +30,19 @@ express()
   .use(bodyParser.json()) // support json encoded bodies
   .use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
 
+   .get('/', function (req, res) {
+    // http://mongoosejs.com/docs/api.html#query_Query-find
+    res.header("Access-Control-Allow-Origin", "http://mydreamphi.000webhostapp.com");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
+   
+      res.json(200, "teste");
+    
+  })
+
   .get('/sensor', function (req, res) {
     // http://mongoosejs.com/docs/api.html#query_Query-find
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://mydreamphi.000webhostapp.com");
     res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
     Todo.find( function ( err, todos ){
@@ -41,7 +51,7 @@ express()
   })
 
   .post('/sensor', function (req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://mydreamphi.000webhostapp.com");
     res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
     var todo = new Todo( req.body );
@@ -53,7 +63,7 @@ express()
   })
 
   .get('/sensor/:nome', function(req, res){
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://mydreamphi.000webhostapp.com");
     res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
     Todo.findOne({
@@ -69,7 +79,7 @@ express()
   })
 
   .put('/sensor/:nome', function(req, res){
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://mydreamphi.000webhostapp.com");
     res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
     Todo.findOneAndUpdate({
@@ -87,7 +97,7 @@ express()
   })
 
 .delete('/sensor/:nome', function(req, res){
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://mydreamphi.000webhostapp.com");
     res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
   Todo.findOneAndRemove(
