@@ -36,7 +36,7 @@ express()
 		res.setHeader("Access-Control-allow-Headers", "Content-type");
 		res.setHeader("Access-Control-allow-Credentials", true);
 		next();
-  });
+  })
 
   .get('/', function(req, res){
 	res.send('ola');
