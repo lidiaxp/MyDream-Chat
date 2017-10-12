@@ -30,16 +30,6 @@ express()
   .use(bodyParser.json()) // support json encoded bodies
   .use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
 
-   .get('/', function (req, res) {
-    // http://mongoosejs.com/docs/api.html#query_Query-find
-    res.header("Access-Control-Allow-Origin", "http://mydreamphi.000webhostapp.com");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Methods", "Origin, Content-Type, X-Auth-Token");
-   
-      res.json(200, "teste");
-    
-  })
-
   .get('/sensor', function (req, res) {
     // http://mongoosejs.com/docs/api.html#query_Query-find
     res.header("Access-Control-Allow-Origin", "http://mydreamphi.000webhostapp.com");
