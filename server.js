@@ -2,7 +2,6 @@ var express  = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
 
-    // Mongoose Schema definition
     Schema = new mongoose.Schema({
       id       : String, 
       nome     : String,
