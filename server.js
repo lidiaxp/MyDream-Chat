@@ -76,6 +76,8 @@ app.get('/webhook', (req, res) => {
 function handleMessage(sender_psid, received_message) {
    let response;
    
+   getAll();
+
   if (received_message.text) {    
 	var frase = received_message.text;
 	var palavras = frase.split(" ");
@@ -207,9 +209,15 @@ function handleMessage(sender_psid, received_message) {
 
 	if(acende){
 		if(objeto == 1){
-			response = {"text": `Controlando o sistema pelo celular`}  
-			getAll(); objeto = 0;
-			putRequest("ligado", "celular");            
+			if(modo == 1){
+				response = {"text": `Controlando o sistema de acordo com o ambiente`}
+				getAll();
+				putRequest("desligado", "celular"); objeto = 0;
+			}else if(modo == 2){
+				response = {"text": `Controlando o sistema pelo celular`}
+				getAll();
+				putRequest("ligado", "celular"); objeto = 0;
+			}        
 		}else if(objeto == 2){
 			response = {"text": `Tranca aberta`}  
 			getAll(); objeto = 0;
@@ -244,9 +252,15 @@ function handleMessage(sender_psid, received_message) {
 		}
 	}else if(apaga){
 		if(objeto == 1){
-			response = {"text": `Controlando o sistema de acordo com o ambiente`}
-			getAll();objeto = 0;
-			putRequest("desligado", "celular");   
+			if(modo == 2){
+				response = {"text": `Controlando o sistema de acordo com o ambiente`}
+				getAll();
+				putRequest("desligado", "celular"); objeto = 0;
+			}else if(modo == 1){
+				response = {"text": `Controlando o sistema pelo celular`}
+				getAll();
+				putRequest("ligado", "celular"); objeto = 0;
+			}  
 		}else if(objeto == 2){
 			response = {"text": `Tranca fechada`}
 			getAll();objeto = 0;
@@ -332,9 +346,9 @@ function handleMessage(sender_psid, received_message) {
 		}else if(objeto == 8){
 			getAll();objeto = 0;
 			if(ecortina == "ligado"){
-        response = {"text": `A cortina está aberta`}
+				response = {"text": `A cortina está aberta`}
 			}else{
-        response = {"text": `A cortina está fechada`}
+				response = {"text": `A cortina está fechada`}
 			}        
 		}else{
 			getAll();objeto = 0;
@@ -454,18 +468,6 @@ function putRequest(estado, sensor){
        json: {estado: estado}
       }, 
       function(error, request, body){});	
-}
-
-function getRequest(sensor){
-	request(  { 
-  		url: 'https://mydream-ufpa-phi.herokuapp.com/sensor/' + sensor, 
-  		method: 'GET', 
-  	}, 
-  	function(error, request, body){
-    	r = body.substring(1, body.length - 1);
-  		/*response = {"text": "Carregando resposta"
-    	} */
-  	});
 }
 
 function getAll(){
